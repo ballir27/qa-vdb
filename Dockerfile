@@ -38,7 +38,8 @@ RUN conda install -y -c conda-forge nltk gensim scipy && \
     conda install -y -c huggingface -c conda-forge datasets huggingface_hub
 
 
-RUN pip install transformers==4.36.0
+RUN pip install transformers==4.36.0 && pip install -U sentence-transformers && \
+    jupyter nbextension enable --py widgetsnbextension
 # Set up a working directory
 WORKDIR /app
 
