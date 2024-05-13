@@ -40,6 +40,9 @@ RUN conda install -y -c conda-forge nltk gensim scipy && \
 
 RUN pip install transformers==4.36.0 && pip install -U sentence-transformers && \
     jupyter nbextension enable --py widgetsnbextension
+
+    # had to run this again in the terminal 
+    
 # Set up a working directory
 WORKDIR /app
 
