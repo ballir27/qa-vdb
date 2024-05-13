@@ -1,9 +1,31 @@
 # Start from the existing image
-FROM vsc-mlops-zoomcamp-da609a4d8023f67c6a9b2ebd7fa7e5bbb2f4d4b9a61b8e5fab7b80d88ce74c9a-uid:latest
+FROM mcr.microsoft.com/devcontainers/base:dev-ubuntu-22.04
 
+# Install required tools
+RUN apt-get update && \
+    apt-get install -y curl && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download Anaconda installer script
+RUN curl -O https://repo.anaconda.com/archive/Anaconda3-2023.07-2-Linux-x86_64.sh
+
+# Install Anaconda
+RUN bash Anaconda3-2023.07-2-Linux-x86_64.sh -b -p /opt/anaconda && \
+    rm Anaconda3-2023.07-2-Linux-x86_64.sh
+
+# Add Anaconda to PATH
+ENV PATH="/opt/anaconda/bin:$PATH"
+
+
+RUN sudo apt-get update
 # Activate the base Anaconda environment
 SHELL ["/bin/bash", "-c"]
 RUN echo "source activate base" > ~/.bashrc
+
+
+# Install ML libraries
+RUN conda install -y numpy pandas scikit-learn jupyter matplotlib
 
 # Install additional packages from conda-forge
 RUN conda install nltk
