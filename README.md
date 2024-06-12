@@ -9,3 +9,5 @@ Build a vector database off of these Wikipedia pages which, given a query, can f
 Then use a question-answering model from HugingFace to anwser the question.
 
 A list of question and answer pairs is given in QAs.csv, but feel free to add to it yourself.
+
+Worked on project with Mike Tatar and Prahlad Siwakoti.
